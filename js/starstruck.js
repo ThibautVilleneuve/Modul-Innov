@@ -8,6 +8,7 @@ function preload() {
     game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
     game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
     game.load.image('pomme', 'assets/games/starstruck/pomme.png');
+    game.load.image('tonneau', 'assets/games/starstruck/tonneau.png');
     game.load.image('background', 'assets/games/starstruck/background2.png');
 
 }
@@ -22,6 +23,7 @@ var cursors;
 var jumpButton;
 var bg;
 var pommes;
+var tonneaux;
 var score = 0;
 var scoreText;
 var timerText;
@@ -42,9 +44,6 @@ function create() {
     map.setCollisionByExclusion([ 1 ]);
 
     layer = map.createLayer('Tile Layer 1');
-
-    //  Un-comment this on to see the collision tiles
-    // layer.debug = true;
 
     layer.resizeWorld();
 
@@ -81,13 +80,30 @@ function create() {
     for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
-        var pomme = pommes.create(i * 200, 0, 'pomme');
+        var pomme = pommes.create(i * 256, 0, 'pomme');
 
         //  Let gravity do its thing
         pomme.body.gravity.y = 700;
 
         //  This just gives each star a slightly random bounce value
         pomme.body.bounce.y = 0.2 + Math.random() * 0.2;
+    }
+
+    tonneaux = game.add.group();
+
+    tonneaux.enableBody = true;
+
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var tonneau = tonneaux.create(i * 100, 0, 'tonneau');
+
+        //  Let gravity do its thing
+        tonneau.body.gravity.y = 700;
+
+        //  This just gives each star a slightly random bounce value
+        tonneau.body.bounce.y = 0.2 + Math.random() * 0.2;
     }
 
 }
@@ -104,6 +120,12 @@ function Win() {
     location.reload() ;
 
 }
+function Loose() {
+
+    alert("Tu as perdu !");
+    location.reload() ;
+
+}
 
 function update() {
 
@@ -111,7 +133,11 @@ function update() {
 
     game.physics.arcade.collide(player, layer);
     game.physics.arcade.collide(pommes, layer);
+    game.physics.arcade.collide(tonneaux, layer);
+
     game.physics.arcade.overlap(player, pommes, collectPomme, null, this);
+    game.physics.arcade.overlap(player, tonneaux, collectTonneau, null, this);
+
 
     player.body.velocity.x = 0;
 
@@ -160,8 +186,11 @@ function update() {
         jumpTimer = game.time.now + 750;
     }
 
-    if (score == 20) {
+    if (score >= 30) {
         Win();
+    }
+    else if (score < 0){
+        Loose();
     }
 
 }
@@ -176,6 +205,17 @@ function collectPomme (player, pomme) {
 
     //  Add and update the score
     score += 10;
+    scoreText.text = 'Score: ' + score;
+
+
+}
+function collectTonneau (player, tonneau) {
+
+    // Removes the pommes from the screen
+    tonneau.kill();
+
+    //  Add and update the score
+    score -= 20;
     scoreText.text = 'Score: ' + score;
 
 
