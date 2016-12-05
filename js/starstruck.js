@@ -24,7 +24,7 @@ var bg;
 var pommes;
 var score = 0;
 var scoreText;
-var time = 60;
+var timerText;
 
 function create() {
 
@@ -50,6 +50,8 @@ function create() {
 
     game.physics.arcade.gravity.y = 700;
 
+    game.time.events.add(Phaser.Timer.SECOND * 60, finTemps, this);
+
     player = game.add.sprite(32, 32, 'dude');
     game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -65,11 +67,8 @@ function create() {
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
     scoreText.fixedToCamera = true;
 
-    timeText = game.add.text(258, 16, 'Time: 0', { fontSize: '32px', fill: '#fff' });
-    timeText.fixedToCamera = true;
-
-
-
+    timerText = game.add.text(200, 16, 'Temps:', { fontSize: '32px', fill: '#fff' });
+    timerText.fixedToCamera = true;
 
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -93,7 +92,22 @@ function create() {
 
 }
 
+function finTemps() {
+
+    alert("Fin du temps :'(");
+
+}
+
+function Win() {
+
+    alert("Tu as gagné !");
+    location.reload() ;
+
+}
+
 function update() {
+
+    timerText.text = 'Temps:' + game.time.events.duration;
 
     game.physics.arcade.collide(player, layer);
     game.physics.arcade.collide(pommes, layer);
@@ -146,14 +160,13 @@ function update() {
         jumpTimer = game.time.now + 750;
     }
 
+    if (score == 20) {
+        Win();
+    }
+
 }
 
-
 function render () {
-
-    // game.debug.text(game.time.physicsElapsed, 32, 32);
-    // game.debug.body(player);
-    // game.debug.bodyInfo(player, 16, 24);
 
 }
 function collectPomme (player, pomme) {
