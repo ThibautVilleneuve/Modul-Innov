@@ -1,4 +1,4 @@
-
+##############
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
@@ -24,7 +24,7 @@ var bg;
 var pommes;
 var score = 0;
 var scoreText;
-var time;
+var time = 60;
 
 function create() {
 
@@ -147,6 +147,7 @@ function update() {
     }
 
 }
+
 
 function render () {
 
