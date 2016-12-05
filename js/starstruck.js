@@ -24,7 +24,7 @@ var bg;
 var pommes;
 var score = 0;
 var scoreText;
-
+var time;
 
 function create() {
 
@@ -33,7 +33,7 @@ function create() {
     game.stage.backgroundColor = '#000000';
 
     bg = game.add.tileSprite(0, 0, 800, 600, 'background');
-    bg.fixedToCamera = false;
+    bg.fixedToCamera = true;
 
     map = game.add.tilemap('level1');
 
@@ -63,6 +63,12 @@ function create() {
 
     game.camera.follow(player);
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
+    scoreText.fixedToCamera = true;
+
+    timeText = game.add.text(258, 16, 'Time: 0', { fontSize: '32px', fill: '#fff' });
+    timeText.fixedToCamera = true;
+
+
 
 
     cursors = game.input.keyboard.createCursorKeys();
@@ -76,13 +82,13 @@ function create() {
     for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
-        var pomme = pommes.create(i * 70, 0, 'pomme');
+        var pomme = pommes.create(i * 200, 0, 'pomme');
 
         //  Let gravity do its thing
-        pomme.body.gravity.y = 6;
+        pomme.body.gravity.y = 700;
 
         //  This just gives each star a slightly random bounce value
-        pomme.body.bounce.y = 0.7 + Math.random() * 0.2;
+        pomme.body.bounce.y = 0.2 + Math.random() * 0.2;
     }
 
 }
@@ -136,7 +142,7 @@ function update() {
     
     if (jumpButton.isDown && player.body.onFloor() && game.time.now > jumpTimer)
     {
-        player.body.velocity.y = -250;
+        player.body.velocity.y = -400;
         jumpTimer = game.time.now + 750;
     }
 
@@ -151,11 +157,12 @@ function render () {
 }
 function collectPomme (player, pomme) {
 
-    // Removes the star from the screen
+    // Removes the pommes from the screen
     pomme.kill();
 
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
+
 
 }
