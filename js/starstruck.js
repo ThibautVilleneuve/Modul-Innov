@@ -7,8 +7,7 @@ function preload() {
     game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
     game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
     game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
-    game.load.image('starSmall', 'assets/games/starstruck/star.png');
-    game.load.image('starBig', 'assets/games/starstruck/star2.png');
+    game.load.image('pomme', 'assets/games/starstruck/pomme.png');
     game.load.image('background', 'assets/games/starstruck/background2.png');
 
 }
@@ -22,6 +21,10 @@ var jumpTimer = 0;
 var cursors;
 var jumpButton;
 var bg;
+var pommes;
+var score = 0;
+var scoreText;
+
 
 function create() {
 
@@ -30,7 +33,7 @@ function create() {
     game.stage.backgroundColor = '#000000';
 
     bg = game.add.tileSprite(0, 0, 800, 600, 'background');
-    bg.fixedToCamera = true;
+    bg.fixedToCamera = false;
 
     map = game.add.tilemap('level1');
 
@@ -45,7 +48,7 @@ function create() {
 
     layer.resizeWorld();
 
-    game.physics.arcade.gravity.y = 250;
+    game.physics.arcade.gravity.y = 700;
 
     player = game.add.sprite(32, 32, 'dude');
     game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -59,15 +62,36 @@ function create() {
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     game.camera.follow(player);
+    scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
+
 
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    pommes = game.add.group();
+
+    pommes.enableBody = true;
+
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var pomme = pommes.create(i * 70, 0, 'pomme');
+
+        //  Let gravity do its thing
+        pomme.body.gravity.y = 6;
+
+        //  This just gives each star a slightly random bounce value
+        pomme.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
 
 }
 
 function update() {
 
     game.physics.arcade.collide(player, layer);
+    game.physics.arcade.collide(pommes, layer);
+    game.physics.arcade.overlap(player, pommes, collectPomme, null, this);
 
     player.body.velocity.x = 0;
 
@@ -123,5 +147,15 @@ function render () {
     // game.debug.text(game.time.physicsElapsed, 32, 32);
     // game.debug.body(player);
     // game.debug.bodyInfo(player, 16, 24);
+
+}
+function collectPomme (player, pomme) {
+
+    // Removes the star from the screen
+    pomme.kill();
+
+    //  Add and update the score
+    score += 10;
+    scoreText.text = 'Score: ' + score;
 
 }
