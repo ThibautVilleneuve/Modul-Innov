@@ -34,10 +34,12 @@ function create() {
 
     bg = game.add.tileSprite(0, 0, 800, 600, 'background');
     bg.fixedToCamera = true;
+    game.camera.follow(player);
 
     map = game.add.tilemap('platform');
 
     map.addTilesetImage('platformer_tiles');
+    
 
     map.setCollisionByExclusion([ 1 ]);
 
@@ -112,7 +114,7 @@ function update() {
     game.physics.arcade.collide(player, layer);
     game.physics.arcade.collide(pommes, layer);
     game.physics.arcade.overlap(player, pommes, collectPomme, null, this);
-
+  
     player.body.velocity.x = 0;
 
     if (cursors.left.isDown)
