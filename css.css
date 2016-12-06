@@ -5,7 +5,7 @@ body {
     
  background-image: url(cra-iloveimg-resized.gif); 
   background-color:midnightblue;
-  color:#048;      
+     
   font-size: 12px;
   line-height: 16px;
     font-family: "Courier New";
@@ -34,6 +34,10 @@ nav {
     padding-bottom: 5px;
 
 }
+.logo{
+    height: 100px;
+    border-radius: 5%;
+}
 section { 
   padding-right: 0 !important; 
 }
@@ -41,6 +45,15 @@ section {
   background-color: #bcd;
   border-radius: 8px;
   padding-bottom: 5px;
+    
+}
+.panel-title{
+    font-size: 25px;
+}
+.panel-body p{
+    color: black;
+    font-family: Microsoft Sans Serif;
+    font-size: 16px;
 }
 h1 {
   text-shadow: 4px 4px 5px #777;
@@ -54,7 +67,7 @@ h1 {
 }
 .panel-default > .panel-heading, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #048;
-  font-family color: yellow;
+    
   background-color: #abc;
   border-radius: 8px;
 }
