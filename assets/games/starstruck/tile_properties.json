@@ -22,11 +22,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"platformer_tiless.png",
+         "image":"..\/..\/..\/..\/..\/arcadestorm\/MicroGames\/assets\/tiles.png",
          "imageheight":320,
          "imagewidth":448,
          "margin":0,
-         "name":"platformer_tiles",
+         "name":"tiles",
          "properties":
             {
 

@@ -1,5 +1,5 @@
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(800, 600, Phaser.CANEVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -9,7 +9,7 @@ function preload() {
     game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
     game.load.image('pomme', 'assets/games/starstruck/pomme.png');
     game.load.image('tonneau', 'assets/games/starstruck/tonneau.png');
-    game.load.image('background', 'assets/games/starstruck/background2.png');
+    game.load.image('background', 'assets/games/starstruck/fond.gif');
 
 }
 
@@ -184,6 +184,10 @@ function update() {
     {
         player.body.velocity.y = -400;
         jumpTimer = game.time.now + 750;
+    }
+    
+    if (player.body.y <=1){
+        Loose();
     }
 
     if (score >= 30) {

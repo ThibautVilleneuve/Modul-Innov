@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="128" tileheight="128" nextobjectid="1">
- <tileset firstgid="1" name="platformer_tiles" tilewidth="128" tileheight="128">
-  <image source="../tiles/kenny_platformer.png" width="640" height="2048"/>
+ <tileset firstgid="1" name=platformer_tiles" tilewidth="128" tileheight="128">
+  <image source="platformer_tiles.png" width="640" height="2048"/>
  </tileset>
  <layer name="Tile Layer 1" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJztzbENAAAMwjBm/j+4X5TFkTK7STp+FZ/P5/P5fD6fz+fz+Z/+8gPb6gTZ
-  </data>
- </layer>
- <layer name="Tile Layer 2" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJztzaENAAAIBDGCYf+NUazAmzY5fVUAAMCnDnUmlL+/f9YCB0YF+w==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="32" height="32">

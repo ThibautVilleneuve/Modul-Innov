@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="128" tileheight="128" nextobjectid="1">
- <tileset firstgid="1" name="platformer_tiles" tilewidth="128" tileheight="128">
+ <tileset firstgid="1" name="kenny_platformer" tilewidth="128" tileheight="128">
   <image source="../tiles/kenny_platformer.png" width="640" height="2048"/>
  </tileset>
  <layer name="Tile Layer 1" width="32" height="32">
