@@ -1,0 +1,60 @@
+html{
+
+}
+body {
+    
+ background-image: url(cra-iloveimg-resized.gif); 
+  background-color:midnightblue;
+  color:#048;      
+  font-size: 12px;
+  line-height: 16px;
+    font-family: "Courier New";
+}
+
+a { 
+  color: #028; 
+    font-family: Monaco;
+}
+footer { 
+  text-align:center;
+    
+
+     
+    
+}
+nav {
+  background-color:#bcd;
+  border-radius: 8px;
+  padding: 0 !important;
+  border: 1px solid #ddd;
+}
+.pull-right{
+    height: 60px;
+    border-radius: 5%;
+    padding-bottom: 5px;
+
+}
+section { 
+  padding-right: 0 !important; 
+}
+.panel {
+  background-color: #bcd;
+  border-radius: 8px;
+  padding-bottom: 5px;
+}
+h1 {
+  text-shadow: 4px 4px 5px #777;
+  color: deepskyblue;
+    font-family: AR DELANEY;
+
+    
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: whitesmoke; 
+}
+.panel-default > .panel-heading, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #048;
+  font-family color: yellow;
+  background-color: #abc;
+  border-radius: 8px;
+}
